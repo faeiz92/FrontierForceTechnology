@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ProjectB",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/OrderDetails/GetOrderDetails": {
+      "get": {
+        "tags": [
+          "OrderDetails"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderHeaderDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderHeaderDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderHeaderDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderDetailDTO": {
+        "type": "object",
+        "properties": {
+          "mawbReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorAddress3": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorAddress4": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorAddress5": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorLocationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorCountrySID": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "consignorState": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorPostCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorContact": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorFax": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorCountryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "consignorCountryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeAddress1": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeAddress2": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeAddress3": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeAddress4": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeAddress5": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeLocationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeCountrySID": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "consigneeState": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneePostCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeContact": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneePhone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeFax": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "consigneeAddressResidential": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "weightMeasure": {
+            "type": "string",
+            "nullable": true
+          },
+          "cubicLength": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "cubicWidth": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "cubicHeight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "cubicWeight": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "serviceType": {
+            "type": "string",
+            "nullable": true
+          },
+          "goodsDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "customsValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "customsCurrencyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryInstructions": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderHeaderDTO": {
+        "type": "object",
+        "properties": {
+          "mawbReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "mawbDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "carrierCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "carrier": {
+            "type": "string",
+            "nullable": true
+          },
+          "flightID": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromLoc": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromLocName": {
+            "type": "string",
+            "nullable": true
+          },
+          "toLoc": {
+            "type": "string",
+            "nullable": true
+          },
+          "toLocName": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipperCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipperName": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bagNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalWeight": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderDetailDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

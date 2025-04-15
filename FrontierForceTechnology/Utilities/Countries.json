@@ -1,0 +1,14 @@
+﻿{
+  "Countries": [
+    {
+      "CountryName": "Malaysia",
+      "CountryCode": "MY",
+      "FFCountrySID": 1
+    },
+    {
+      "CountryName": "Singapore",
+      "CountryCode": "SG",
+      "FFCountrySID": 2
+    }
+  ]
+}
