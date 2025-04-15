@@ -21,7 +21,7 @@ namespace ProjectB.DTO
         public string? ReceiverName { get; set; }
         public string? BagNumber { get; set; }
         public string? Notes { get; set; }
-        public string? TotalWeight { get; set; }
+        public int? TotalWeight { get; set; }
         public List<OrderDetailDTO> OrderDetails { get; set; }
 
     }

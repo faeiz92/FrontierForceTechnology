@@ -33,46 +33,38 @@ namespace ProjectB.Controllers
 
         [HttpGet]
         [Route("GetOrderDetails")]
-        public async Task<List<OrderHeaderDTO>> GetOrderHeadersWithDetails()
+        public async Task<OrderHeaderDTO> GetOrderHeadersWithDetails()
         {
-            var orderHeadersWithDetails = _repository.OrderHeader
-                                            .GetAllQueryable()
-                                            .Include(x => x.OrderDetails)
-                                            .ToList()
-                                            .Where(x => x.OrderDetails.Any(od => od.MawbReference == x.MawbReference))  // Filter in memory
-                                            .ToList();
+            var orderHeadersWithDetails  = _repository.OrderHeader
+                                        .GetAllQueryable()
+                                        .Include(x => x.OrderDetails)
+                                        .FirstOrDefault(x => x.OrderDetails.Any(od => od.MawbReference == x.MawbReference));
 
             
             int getTotalWeight = 0;
             string mawbId = string.Empty;
-
-            foreach (var orderHeader in orderHeadersWithDetails)
+            
+            mawbId = orderHeadersWithDetails.MawbReference;
+            foreach (var orderDetail in orderHeadersWithDetails.OrderDetails)
             {
-                mawbId = orderHeader.MawbReference;
-                foreach (var orderDetail in orderHeader.OrderDetails)
-                {
 
-                    getTotalWeight += Convert.ToInt32(orderDetail.Weight??0);
-                }
+                getTotalWeight += Convert.ToInt32(orderDetail.Weight??0);
             }
 
            await  _repository.OrderHeader.UpdateTotalWeight(mawbId, getTotalWeight);
            _repository.SaveChanges();
 
             var orderHeadersWithDetails2 = _repository.OrderHeader
-                                            .GetAllQueryable()
-                                            .Include(x => x.OrderDetails)
-                                            .ToList()
-                                            .Where(x => x.OrderDetails.Any(od => od.MawbReference == x.MawbReference))  // Filter in memory
-                                            .ToList();
+                                        .GetAllQueryable()
+                                        .Include(x => x.OrderDetails)
+                                        .FirstOrDefault(x => x.OrderDetails.Any(od => od.MawbReference == x.MawbReference));
 
-            var orderHeaderDTOs = _mapper.Map<List<OrderHeaderDTO>>(orderHeadersWithDetails2);
+            var orderHeaderDTOs = _mapper.Map<OrderHeaderDTO>(orderHeadersWithDetails2);
 
             var countries = _filePathService.GetCountriesFromJson();
 
-            foreach (var orderHeader in orderHeaderDTOs)
-            {
-                foreach (var orderDetail in orderHeader.OrderDetails)
+            
+                foreach (var orderDetail in orderHeaderDTOs.OrderDetails)
                 {
 
                     var country = countries.FirstOrDefault(c => c.FFCountrySID == orderDetail.ConsignorCountrySID);
@@ -82,7 +74,6 @@ namespace ProjectB.Controllers
                         orderDetail.ConsignorCountryName = country.CountryName;
                     }
                 }
-            }
             return orderHeaderDTOs;
         }
 
